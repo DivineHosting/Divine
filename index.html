@@ -1,0 +1,499 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DivineStore | Minecraft Server Hosting</title>
+  <meta name="description" content="Professional Minecraft server hosting by DivineStore. Uptime, DDoS protection, no data loss guarantee. Plans starting ₹150/month." />
+  <!-- Favicon (replace with your own) -->
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    /* —— RESET & GLOBAL STYLES —— */
+    *, *::before, *::after { margin:0; padding:0; box‑sizing: border‑box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height:1.6; color:#333;
+      background: #f0f2f8;
+    }
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; height: auto; }
+    ul { list-style: none; padding: 0; }
+
+    /* —— ROOT VARIABLES —— */
+    :root {
+      --primary: #00c797;
+      --primary-dark: #00a885;
+      --secondary: #4652ff;
+      --bg-card: #fff;
+      --text-heading: #222;
+      --text-muted: #555;
+      --radius: 8px;
+      --max-width: 1200px;
+    }
+
+    /* —— HEADER & NAV —— */
+    header {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    nav .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    nav .logo span { color: #ff6ec4; }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: #ffe9b3; }
+
+    /* Mobile nav toggle */
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 60px;
+        right: 1rem;
+        background: rgba(255,255,255,0.95);
+        color: #222;
+        flex-direction: column;
+        width: 200px;
+        padding: 1rem;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: all 0.3s;
+      }
+      nav ul.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      nav ul li a { color: #222; }
+      .mobile-toggle { display: block; }
+    }
+
+    /* —— HERO SECTION —— */
+    .hero {
+      padding: 4rem 1rem;
+      text-align: center;
+      background: var(--secondary);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #f0f0f5;
+    }
+    .hero .btn-primary {
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .hero .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* —— PRICING SECTION —— */
+    .pricing {
+      padding: 3rem 1rem;
+      background: #f7f8fa;
+    }
+    .pricing .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-heading);
+    }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+      gap: 1.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .plan {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .plan:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .plan.popular {
+      border: 2px solid var(--primary);
+    }
+    .plan .title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      color: var(--text-heading);
+    }
+    .plan .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    .plan ul.features {
+      margin-bottom: 1.5rem;
+    }
+    .plan ul.features li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .plan ul.features li span {
+      margin-right: 0.6rem;
+      font-size: 1.2rem;
+    }
+    .plan .btn-buy {
+      padding: 0.8rem;
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .plan .btn-buy:hover {
+      background: var(--primary-dark);
+    }
+
+    /* —— FEATURES / BENEFITS SECTION —— */
+    .features {
+      padding: 3rem 1rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .features .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1.5rem;
+    }
+    .feature {
+      text-align: center;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.8rem 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+    }
+    .feature .icon {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+      color: var(--secondary);
+    }
+    .feature h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--text-heading);
+    }
+    .feature p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* —— TESTIMONIALS SECTION —— */
+    .testimonials {
+      background: #f7f8fa;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .testimonials .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .testimonials .testimonial-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 1.5rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .testimonial {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .testimonial p {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .testimonial .author {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    /* —— FOOTER —— */
+    footer {
+      background: #222;
+      color: #ddd;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    footer .social {
+      margin-bottom: 1rem;
+    }
+    footer .social a {
+      margin: 0 0.5rem;
+      color: #ddd;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    footer .social a:hover {
+      color: var(--primary);
+    }
+    footer small, footer p {
+      font-size: 0.9rem;
+    }
+
+    /* Spacing Helpers */
+    .section { padding: 4rem 0; }
+    .section-title { margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav>
+      <div class="logo">Divine<span>Store</span></div>
+      <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+      <ul id="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#pricing">Plans</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <h1>DivineStore ✨ Minecraft Hosting</h1>
+    <p>Reliable, powerful, and affordable hosting plans – optimized for SMP & high‑load servers.</p>
+    <a href="https://discord.gg/nnvtmzFutB" target="_blank" rel="noopener noreferrer">
+      <button class="btn-primary">Buy Now on Discord</button>
+    </a>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <h2 class="section-title">Choose Your Plan</h2>
+    <div class="plans-grid">
+      <!-- Repeat plan card -->
+      <div class="plan">
+        <div>
+          <div class="title">🟫 Dirt Plan</div>
+          <div class="price">₹ 150 / month</div>
+          <ul class="features">
+            <li><span>🔧</span>CPU: 150%</li>
+            <li><span>🧠</span>RAM: 4 GB</li>
+            <li><span>💾</span>15 GB SSD</li>
+          </ul>
+        </div>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="title">🪨 Stone Plan</div>
+        <div class="price">₹ 250 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 200%</li>
+          <li><span>🧠</span>RAM: 6 GB</li>
+          <li><span>💾</span>25 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="title">⛏️ Iron Plan</div>
+        <div class="price">₹ 350 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 300%</li>
+          <li><span>🧠</span>RAM: 8 GB</li>
+          <li><span>💾</span>35 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan popular">
+        <div class="title">🔌 Redstone Plan</div>
+        <div class="price">₹ 450 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 350%</li>
+          <li><span>🧠</span>RAM: 10 GB</li>
+          <li><span>💾</span>40 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="title">🥇 Gold Plan</div>
+        <div class="price">₹ 550 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 400%</li>
+          <li><span>🧠</span>RAM: 12 GB</li>
+          <li><span>💾</span>50 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="title">💚 Emerald Plan</div>
+        <div class="price">₹ 600 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 500%</li>
+          <li><span>🧠</span>RAM: 14 GB</li>
+          <li><span>💾</span>60 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+
+      <div class="plan">
+        <div class="title">⚙️ Netherite Plan</div>
+        <div class="price">₹ 800 / month</div>
+        <ul class="features">
+          <li><span>🔧</span>CPU: 700%</li>
+          <li><span>🧠</span>RAM: 24 GB</li>
+          <li><span>💾</span>70 GB SSD</li>
+        </ul>
+        <button class="btn-buy" onclick="window.open('https://discord.gg/nnvtmzFutB', '_blank')">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <h2 class="section-title">Why Choose DivineStore?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="icon">✅</div>
+        <h4>Uptime Guarantee</h4>
+        <p>99.9% uptime SLA for uninterrupted server availability.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <h4>DDoS Protection</h4>
+        <p>Enterprise-grade mitigation to keep your servers safe from attacks.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔁</div>
+        <h4>No Data Loss</h4>
+        <p>Frequent snapshots and backups to prevent accidental crashes.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚙️</div>
+        <h4>Minecraft Optimized</h4>
+        <p>High-performance setup tailored for SMP and heavy-load usage.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📈</div>
+        <h4>Scalable Upgrades</h4>
+        <p>Easily upgrade plans as your community grows.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📚</div>
+        <h4>24/7 Support</h4>
+        <p>Get help anytime via Discord support with rapid response.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="testimonial-list">
+      <div class="testimonial">
+        <p>"DivineStore offers rock-solid uptime and fast support – highly recommend!"</p>
+        <div class="author">— MinecraftFan #1</div>
+      </div>
+      <div class="testimonial">
+        <p>"Our SMP runs smoothly even with 30+ players. Worth every rupee."</p>
+        <div class="author">— ServerOwner99</div>
+      </div>
+      <div class="testimonial">
+        <p>"Switched from free VPS to DivineStore's Gold plan – the improvement was night and day!"</p>
+        <div class="author">— CraftyAdmin</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="social">
+      <a href="https://discord.gg/nnvtmzFutB" target="_blank" rel="noopener noreferrer" aria-label="Discord">🟦</a>
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="Email">✉️</a>
+    </div>
+    <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+    <p>Questions? Contact us at <a href="mailto:info@divinestore.example" style="color:#ddd;">info@divinestore.example</a></p>
+    <small>&copy; 2025 DivineStore. All rights reserved.</small>
+  </footer>
+
+  <!-- SCRIPT FOR MOBILE NAV -->
+  <script>
+    function toggleNav() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>
+
